@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+{% block header %}
+
+<header
+  class="masthead"
+  style="background-image: url({% static  'img/home-bg.jpg' %})"
+>
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="site-heading">
+          <h1>Django Blog</h1>
+          <span class="subheading">Tudo sobre Python e Django</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+{% endblock header %} {% block container %}
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      {% for post in postings %}
+      <div class="post-preview">
+        <a href="postings/{{ post.id }}">
+          <h2 class="post-title">
+            {{ post.title }}
+          </h2>
+          <h3 class="post-subtitle">
+            {{ post.description }}
+          </h3>
+        </a>
+        <p class="post-meta">
+          Postado por
+          <a href="">{{ post.author }}</a>
+          {{ post.created_date }}
+        </p>
+      </div>
+      <hr />
+      {% endfor %}
+
+      <div class="clearfix">
+        <a class="btn btn-primary float-right" href="#">Mais antigas &rarr;</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock container%}
